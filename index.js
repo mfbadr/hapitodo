@@ -23,7 +23,7 @@ Routes to make:
  delete /tasks/{id} --> delete task
  get /tasks/{id}    --> show task
 
- get /priorities    --> show all priorites
+ get /priorities    --> show all priorities
  post /priorities    --> create priority
  */
 
