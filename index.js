@@ -29,6 +29,20 @@ Routes to make:
 
 server.route({
     config: {
+        description: 'post here to make a task',
+        notes: 'tasks have a name that is a string',
+        tags: ['tasks', 'a', 'b']
+    },
+    method: 'POST',
+    path: '/tasks',
+    handler: function (request, reply) {
+        controller.createTask(request.payload);
+        reply('task')
+    }
+});
+
+server.route({
+    config: {
         description: 'post here to make a priority',
         notes: 'priorities have a name that is a string',
         tags: ['priorities', 'a', 'b']

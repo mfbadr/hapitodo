@@ -3,11 +3,11 @@
 
 var mongoose = require('mongoose'),
     Schema   = mongoose.Schema,
-    Priority = require('priority.model');
+    Priority = require('./priorities.js');
 
 var TaskSchema = new Schema({
     name: String,
-    createdOn: { type: Date, default: Date.now },
+    //createdOn: { type: Date, default: Date.now },
     dueOn: { type: Date },
     priority: {type: mongoose.Schema.Types.ObjectId, ref: 'Priority'}
 });

@@ -15,7 +15,18 @@ exports.updateTask = function(req){
 };
 
 //called by a post to /tasks
-exports.createTask = function(){};
+exports.createTask = function(payload){
+
+    Priority.findOne({ 'name': payload.priority}, function (err, priority) {
+        if (err) return handleError(err);
+        console.log('error');
+        if (priority) {
+            payload.priority = priority._id;
+            var newTask = new Task(payload);
+            newTask.save();
+        }
+    })
+};
 
 //called by a get to /tasks
 exports.allTasks = function(){};
