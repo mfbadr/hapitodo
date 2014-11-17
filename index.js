@@ -2,12 +2,15 @@
  * Created by mikeybadr on 11/17/14.
  */
 
-var Hapi      = require('hapi'),
-    Joi       = require('joi'),
-    port      = process.env.PORT,
-    db        = process.env.DB,
+var Hapi       = require('hapi'),
+    Joi        = require('joi'),
+    port       = process.env.PORT,
+    db         = process.env.DB,
+    mongoose   = require('mongoose'),
     controller = require('./controller.js'),
-    server    = new Hapi.Server(port);
+    server     = new Hapi.Server(port);
+
+mongoose.connect(db);
 
 /*
 Routes to make:
@@ -23,6 +26,20 @@ Routes to make:
  get /priorities    --> show all priorites
  post /priorities    --> create priority
  */
+
+server.route({
+    config: {
+        description: 'post here to make a priority',
+        notes: 'priorities have a name that is a string',
+        tags: ['priorities', 'a', 'b']
+    },
+    method: 'POST',
+    path: '/priorities',
+    handler: function (request, reply) {
+        controller.createPriorities(request.payload);
+        reply('pong')
+    }
+});
 
 server.route({
     config: {

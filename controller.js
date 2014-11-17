@@ -10,7 +10,9 @@ var Task = require('./models/tasks.js')
 exports.showTask = function(){};
 
 //called by a put to /tasks/{id}
-exports.updateTask = function(){};
+exports.updateTask = function(req){
+
+};
 
 //called by a post to /tasks
 exports.createTask = function(){};
@@ -25,4 +27,7 @@ exports.deleteTask = function(){};
 exports.showPriorities = function(){};
 
 //called by a post to /priorities
-exports.createPriorities = function(){};
+exports.createPriorities = function(payload){
+    var newPriority = new Priority(payload);
+    newPriority.save();
+};
