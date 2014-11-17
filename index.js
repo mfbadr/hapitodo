@@ -22,3 +22,31 @@ Routes to make:
  get /priorities    --> show all priorites
  post /priorities    --> create priority
  */
+
+server.route({
+    config: {
+        description: 'this is the home page route',
+        notes: 'here are some notes about the home page',
+        tags: ['home', 'a', 'b']
+    },
+    method: 'GET',
+    path: '/home',
+    handler: function (request, reply) {
+        reply('Hello, this is the home page');
+    }
+});
+
+server.route({
+    config: {
+        description: 'this is how users get to the about page',
+        notes: 'notes about the about page go here',
+        tags: ['about', 'a', 'b']
+    },
+    method: 'GET',
+    path: '/about',
+    handler: function (request, reply) {
+        reply('Hello, this is the about page');
+    }
+});
+
+
