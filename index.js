@@ -6,6 +6,7 @@ var Hapi      = require('hapi'),
     Joi       = require('joi'),
     port      = process.env.PORT,
     db        = process.env.DB,
+    controller = require('./controller.js'),
     server    = new Hapi.Server(port);
 
 /*
