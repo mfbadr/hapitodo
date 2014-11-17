@@ -50,3 +50,28 @@ server.route({
 });
 
 
+
+server.pack.register(
+
+    [
+        {
+            plugin: require('good'),
+            options: {
+                reporters: [{
+                    reporter: require('good-console'),
+                    args: [{log: '*', request: '*'}]
+                }]
+            }
+        },
+        {
+            plugin: require('lout')
+        }
+    ], function (err) {
+    if (err) {
+        throw err; // something bad happened loading the plugin
+    }
+
+    server.start(function () {
+        server.log('info', 'Server running at: ' + server.info.uri);
+    });
+});
