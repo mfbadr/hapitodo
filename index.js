@@ -37,7 +37,7 @@ server.route({
     path: '/tasks',
     handler: function (request, reply) {
         controller.createTask(request.payload);
-        reply('task')
+        reply('Task successfully created!')
     }
 });
 
@@ -51,7 +51,7 @@ server.route({
     path: '/priorities',
     handler: function (request, reply) {
         controller.createPriorities(request.payload);
-        reply('pong')
+        reply('Priority successfully created!')
     }
 });
 
@@ -81,6 +81,29 @@ server.route({
     }
 });
 
+server.route({
+   config: {
+       description: 'Update an existing task in the DB.',
+       notes: 'Finds a task & updates it\'s properties.',
+       tags: ['tasks', 'update'],
+       validate: {
+           params: {
+               taskId: Joi.number().required().min(24).description('task objectID')
+           },
+           payload: {
+               name: Joi.number().required().min(5).description('name of task'),
+               dueOn: Joi.date().required().min('now').format('MM/DD/YYYY').description('due date of task'),
+               priority: Joi.number().required().min(24).description('id of task priority')
+           }
+       }
+   },
+    method: 'PUT',
+    path: '/tasks/{id}',
+    handler: function (request, reply) {
+        controller.updateTask(request.payload);
+        reply('Task successfully updated!');
+    }
+});
 
 
 server.pack.register(

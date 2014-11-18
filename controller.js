@@ -9,9 +9,16 @@ var Task = require('./models/tasks.js')
 //called by a get to /tasks/{id}
 exports.showTask = function(){};
 
-//called by a put to /tasks/{id}
-exports.updateTask = function(req){
 
+//called by a put to /tasks/{id}
+// Updates an existing task in the DB.
+exports.updateTask = function(request, reply) {
+    Task.findByIdAndUpdate(request.params.id, request.payload, function (err, task) {
+        if (err) return handleError(err);
+        if (task) {
+            reply(task);
+        });
+    });
 };
 
 //called by a post to /tasks

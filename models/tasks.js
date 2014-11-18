@@ -8,8 +8,9 @@ var mongoose = require('mongoose'),
 var TaskSchema = new Schema({
     name: String,
     //createdOn: { type: Date, default: Date.now },
-    dueOn: { type: Date },
-    priority: {type: mongoose.Schema.Types.ObjectId, ref: 'Priority'}
+    //isComplete: {type: Boolean, default: false},
+    dueOn: Date,
+    priority: {type: Schema.Types.ObjectId, ref: 'Priority'}
 });
 
 TaskSchema
@@ -17,7 +18,8 @@ TaskSchema
     .get(function() {
         return {
             'name': this.name,
-            'createdOn': this.createdOn,
+            //'createdOn': this.createdOn,
+            //'isComplete': this.isComplete,
             'dueOn': this.dueOn,
             'priority': this.priority
         };
