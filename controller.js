@@ -40,9 +40,10 @@ exports.createTask = function(payload){
 };
 
 //called by a get to /tasks
-exports.oneTask = function(request){
-    Task.find({id: request.params.id}, function(err, task){
+exports.oneTask = function(request,reply){
+    Task.findById(request.params.id, function(err, task){
         reply(task);
+        //return task;
     })
 };
 
