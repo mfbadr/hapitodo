@@ -7,7 +7,11 @@ var Task = require('./models/tasks.js')
 
 
 //called by a get to /tasks/{id}
-exports.showTask = function(){};
+exports.showTask = function(request, reply){
+    Task.find().populate('priority').exec(function(err, tasks){
+        reply(tasks);
+    });
+};
 
 //called by a put to /tasks/{id}
 exports.updateTask = function(req){
@@ -34,8 +38,12 @@ exports.allTasks = function(){};
 //called by a delete to /tasks/{id}
 exports.deleteTask = function(){};
 
-//called by a get to /priorities
-exports.showPriorities = function(){};
+//called by a get to /priorities;
+exports.showPriorities = function(request, reply){
+    Priority.find(function(err, priorities){
+        reply(priorities);
+    });
+};
 
 //called by a post to /priorities
 exports.createPriorities = function(payload){

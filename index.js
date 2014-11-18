@@ -81,6 +81,27 @@ server.route({
     }
 });
 
+server.route({
+    config: {
+        description: 'this will get to an index of all tasks',
+        notes: 'get to tasks',
+        tags: ['tasks']
+    },
+    method: 'GET',
+    path: '/tasks',
+    handler: controller.showTask
+});
+server.route({
+    config: {
+        description: 'this will get to an index of all priorities',
+        notes: 'get to priorities',
+        tags: ['priorities']
+    },
+    method: 'GET',
+    path: '/priorities',
+    handler: controller.showPriorities
+});
+
 
 
 server.pack.register(
