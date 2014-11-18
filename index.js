@@ -88,7 +88,7 @@ server.route({
        tags: ['tasks', 'update'],
        validate: {
            params: {
-               taskId: Joi.number().required().min(24).description('id of task')
+               taskId: Joi.number().required().min(24).description('task objectID')
            },
            payload: {
                name: Joi.number().required().min(5).description('name of task'),
