@@ -70,15 +70,13 @@ server.route({
 
 server.route({
     config: {
-        description: 'this is how users get to the about page',
-        notes: 'notes about the about page go here',
-        tags: ['about', 'a', 'b']
+        description: 'this is how users delete a task',
+        notes: 'the id param needs to be a valid task id',
+        tags: ['tasks', 'a', 'b']
     },
-    method: 'GET',
-    path: '/about',
-    handler: function (request, reply) {
-        reply('Hello, this is the about page');
-    }
+    method: 'DELETE',
+    path: '/tasks/{id}',
+    handler: controller.deleteTask
 });
 
 server.route({

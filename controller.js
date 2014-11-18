@@ -43,7 +43,11 @@ exports.createTask = function(payload){
 exports.allTasks = function(){};
 
 //called by a delete to /tasks/{id}
-exports.deleteTask = function(){};
+exports.deleteTask = function(request){
+   Task.find({id: request.params.id}).remove(
+       reply('Task removed')
+   );
+};
 
 //called by a get to /priorities;
 exports.showPriorities = function(request, reply){
