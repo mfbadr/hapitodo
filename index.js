@@ -91,6 +91,17 @@ server.route({
 });
 server.route({
     config: {
+        description: 'this will return one task',
+        notes: 'get to tasks/id',
+        tags: ['tasks']
+    },
+    method: 'GET',
+    path: '/tasks/{id}',
+    handler: controller.oneTask
+});
+
+server.route({
+    config: {
         description: 'this will get to an index of all priorities',
         notes: 'get to priorities',
         tags: ['priorities']

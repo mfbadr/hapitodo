@@ -40,7 +40,11 @@ exports.createTask = function(payload){
 };
 
 //called by a get to /tasks
-exports.allTasks = function(){};
+exports.oneTask = function(request){
+    Task.find({id: request.params.id}, function(err, task){
+        reply(task);
+    })
+};
 
 //called by a delete to /tasks/{id}
 exports.deleteTask = function(request){
