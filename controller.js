@@ -14,6 +14,20 @@ exports.updateTask = function(req){
 
 };
 
+// Updates an existing task in the DB.
+exports.updateTask = function(req, res) {
+    if(req.body._id) { delete req.body._id; }
+    Task.findById(req.params.id, function (err, task) {
+        if (err) { return handleError(res, err); }
+        if(!task) { return res.send(404); }
+        var updated = _.merge(task, req.body);
+        updated.save(function (err) {
+            if (err) { return handleError(res, err); }
+            return res.json(200, task);
+        });
+    });
+};
+
 //called by a post to /tasks
 exports.createTask = function(payload){
 
@@ -42,3 +56,7 @@ exports.createPriorities = function(payload){
     var newPriority = new Priority(payload);
     newPriority.save();
 };
+
+function handleError(res, err) {
+    return res.send(500, err);
+}
